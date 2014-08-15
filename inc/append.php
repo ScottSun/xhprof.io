@@ -21,7 +21,7 @@ if (!isset($post_params['prof']) || $post_params['prof']) {
         if ($_SERVER['HTTP_HOST'] == 'dw-dev.socialgamenet.com'
             && (substr($_SERVER['REQUEST_URI'], 1, 4) == 'api')) {
             // xhprof
-            $XHPROF_ROOT = '/sgn/htdocs/dev-dw/dragon-server-code/docroot/xhprof/';
+            $XHPROF_ROOT = '/sgn/htdocs/dev-integration/dragon-server-code/docroot/xhprof/';
             include_once $XHPROF_ROOT . "/xhprof_lib/utils/xhprof_lib.php";
             include_once $XHPROF_ROOT . "/xhprof_lib/utils/xhprof_runs.php";
             $xhprof_runs = new XHProfRuns_Default();
