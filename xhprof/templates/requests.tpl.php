@@ -53,7 +53,7 @@ require __DIR__ . '/histogram.inc.tpl.php';
 				<td><a href="<?=url('uris', array('host_id' => $e['host_id'], 'uri_id' => $e['uri_id']))?>"><?=htmlspecialchars($e['uri'])?></a></td>
 				<td><?=$e['request_method']?></td>
 				<td><?=$e['params']?></td>
-				<td><a href="http://xhprof.socialgamenet.com:8090/xhprof_html/index.php?run=<?=$e['run_id']?>&source=xhprof_dw_dev" target="_blank"><?=$e['run_id']?></a></td>
+				<td><a href="/xhprof/xhprof_html/index.php?run=<?=$e['run_id']?>&source=xhprof_dw_dev" target="_blank"><?=$e['run_id']?></a></td>
 				<td class="metrics" data-ay-sort-weight="<?=$e['wt']['raw']?>"><?=$e['wt']['formatted']?></td>
 				<td class="metrics" data-ay-sort-weight="<?=$e['cpu']['raw']?>"><?=$e['cpu']['formatted']?></td>
 				<td class="metrics" data-ay-sort-weight="<?=$e['mu']['raw']?>"><?=$e['mu']['formatted']?></td>
