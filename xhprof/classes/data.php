@@ -28,7 +28,9 @@ class Data
 	    		`rh1`.`id` `host_id`,
 	    		`rh1`.`host`,
 	    		`ru1`.`id` `uri_id`,
-	    		`ru1`.`uri`
+	    		`ru1`.`uri`,
+                `ru1`.`params`,
+                `ru1`.`run_id`
 	    	FROM
 	    		`requests` `r1`
 	    	INNER JOIN
@@ -168,9 +170,11 @@ class Data
 		
 		if(!isset($request['uri_id']))
 		{
+            global $run_id;
+            $input = json_decode(file_get_contents("php://input"), true);
 			$this->db
-				->prepare("INSERT INTO `request_uris` SET `uri` = :uri;")
-				->execute(array('uri' => $_SERVER['REQUEST_URI']));
+				->prepare("INSERT INTO `request_uris` SET `uri` = :uri, `params` = :params, `run_id` = :run_id;")
+				->execute(array('uri' => $_SERVER['REQUEST_URI'], 'params' => json_encode($input['params']['cmds']), 'run_id' => $run_id));
 		
 			$request['uri_id']		= $this->db->lastInsertId();
 		}
@@ -487,6 +491,8 @@ class Data
 				
 				ru1.id uri_id,
 				ru1.uri,
+                ru1.params,
+                ru1.run_id,
 				
 				rm1.method request_method,
 				

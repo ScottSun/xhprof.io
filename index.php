@@ -1,6 +1,8 @@
 <?php
 namespace ay\xhprof;
 
+ini_set('max_execution_time', 300);
+
 ob_start();
 
 require __DIR__ . '/xhprof/includes/bootstrap.inc.php';

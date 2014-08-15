@@ -374,7 +374,7 @@ function error_exception_handler()
 		header((isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0') . ' 500 Internal Server Error');
 	}
 	
-	if(DEBUG)
+	if(1)
 	{
 		if($data['type'] === NULL)
 		{

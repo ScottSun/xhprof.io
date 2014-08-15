@@ -16,11 +16,22 @@ register_shutdown_function(function(){
 	{
 		fastcgi_finish_request();
 	}
+
+    if ($_SERVER['HTTP_HOST'] == 'dw-dev.socialgamenet.com') {
+        // xhprof
+        $XHPROF_ROOT = '/sgn/htdocs/xhprof/';
+        include_once $XHPROF_ROOT . "/xhprof_lib/utils/xhprof_lib.php";
+        include_once $XHPROF_ROOT . "/xhprof_lib/utils/xhprof_runs.php";
+        $xhprof_runs = new XHProfRuns_Default();
+        global $run_id;
+        $run_id = $xhprof_runs->save_run($xhprof_data, "xhprof_dw_dev");
+
+        // xhprof.io
+        $config			= require __DIR__ . '/../xhprof/includes/config.inc.php';
+        require_once __DIR__ . '/../xhprof/classes/data.php';
+        $xhprof_data_obj	= new \ay\xhprof\Data($config['pdo']);
+        $xhprof_data_obj->save($xhprof_data);
+
+    }
 	
-	$config			= require __DIR__ . '/../xhprof/includes/config.inc.php';
-	
-	require_once __DIR__ . '/../xhprof/classes/data.php';
-	
-	$xhprof_data_obj	= new \ay\xhprof\Data($config['pdo']);
-	$xhprof_data_obj->save($xhprof_data);
 });

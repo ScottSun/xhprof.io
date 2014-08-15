@@ -107,6 +107,8 @@ DROP TABLE IF EXISTS `request_uris`;
 CREATE TABLE `request_uris` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `uri` varchar(255) NOT NULL DEFAULT '',
+  `params` varchar(1024) NOT NULL DEFAULT '',
+  `run_id` varchar(20) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uri` (`uri`),
   KEY `id` (`id`,`uri`)
